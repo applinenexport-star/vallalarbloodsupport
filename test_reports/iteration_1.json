@@ -1,0 +1,34 @@
+{
+  "summary": "BloodConnect full regression — 28/28 backend pytest passed (auth, donor register/me/update, complaints, admin block/unblock/complaints/csv/stats, blood requests, _id leak). UI flows verified: login → OTP → routing (unregistered→/home, registered 9123456789→/profile), Home hospital-city/phone + terms + complaint button, Complaint submission, Terms page renders full 10 sections, Donors bug FIX verified (462 donors shown for TN/A+), Admin PIN flow with 3 tabs, block/unblock/complaints all working, donor self-registration end-to-end.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [],
+    "react_native_issues": [
+      {"component": "various", "issue": "Numerous 'shadow* style props are deprecated. Use boxShadow' warnings on web preview. Cosmetic only — functionality not affected."},
+      {"component": "donors.tsx hidden poster View", "issue": "'props.pointerEvents is deprecated. Use style.pointerEvents' warning. Cosmetic."}
+    ]
+  },
+  "test_report_links": [
+    "/app/backend/tests/test_bloodconnect_api.py",
+    "/app/test_reports/pytest/pytest_results.xml"
+  ],
+  "action_items": [
+    "Optional: migrate shadow* style props to boxShadow and pointerEvents prop to style.pointerEvents to silence RN-web deprecation warnings.",
+    "Optional: replace browser alert() with in-app toast — during UI automation, alert dialogs block the flow (auto-accepted in tests). Not a bug, just UX polish for web."
+  ],
+  "critical_code_review_comments": [
+    "server.py is approaching 500 lines — consider splitting into routers/ (auth, donors, complaints, admin).",
+    "No duplicate registration check for incoming CSV uploads — bulk upload can create duplicate donor rows if same phone appears in multiple CSVs (by design for admin seed, but worth noting).",
+    "donor_available() silently swallows date parse errors; malformed last_donation_date in DB would treat donor as available.",
+    "DEV_MODE_OTP hardcoded default '123456' — acceptable per problem statement (Twilio will be integrated later)."
+  ],
+  "updated_files": ["/app/backend/tests/test_bloodconnect_api.py"],
+  "success_rate": {"backend": "100% (28/28)", "frontend": "100% critical flows"},
+  "seed_data_creation": "Tests create ephemeral TEST_ donors via /donors/register (unique phone per run), a blocklist entry 9111111122 (unblocked at end), a blocklist entry 9555555555 from UI test (unblocked), and a few complaints ('TEST UI', 'TEST_C'). No production data modified.",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Backend tests are in /app/backend/tests/test_bloodconnect_api.py as pytest classes. Base URL is read from frontend/.env EXPO_PUBLIC_BACKEND_URL. testID naming: login-phone-input, send-otp-btn, otp-box-{0..5}, verify-otp-btn, open-register-link, open-admin-link, reg-name/phone/age/email/town, reg-bg-{A+/B+/...}, reg-state/city (SelectPicker modals), reg-submit-btn, hospital-city-input, hospital-phone-input, terms-checkbox, terms-link, submit-request-btn, register-complaint-btn, complaint-name/phone/details/submit-btn, admin-pin-input, admin-login-btn, admin-tab-{upload|block|complaints}, block-phone-input, block-reason-input, block-btn, blocked-{phone_key}, unblock-{phone_key}. Donors screen uses filter-state/filter-city/filter-bg pickers with local INDIA_STATES_CITIES (no /donors/filters dependency). OTP bypass code: 123456. Admin PIN: 0000.",
+  "rca_of_issue": "Previous 'No donors found' bug fix confirmed: donors.tsx now uses local INDIA_STATES_CITIES for filter options (decoupled from server-derived /donors/filters), and defaults to state='Tamil Nadu' + blood_group from current_request. GET /api/donors?state=Tamil Nadu&blood_group=A+ returns 462 donors and the UI renders them correctly."
+}

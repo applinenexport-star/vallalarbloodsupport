@@ -1,0 +1,153 @@
+{
+  "project_name": "Blood Donor Finder",
+  "domain": "Health, Emergency, Medical Utility",
+  "theme": "light",
+  "archetype": "1 (Organic & Earthy / Medical Trust)",
+  "design_philosophy": "Trustworthy, fast, clear, and easy to use in emergency contexts. Strong visual hierarchy to guide stressed users toward life-saving actions. Clean layouts with bold, legible typography and high-contrast red accents.",
+  "colors": {
+    "background": {
+      "default": "#F8FAFC",
+      "card": "#FFFFFF",
+      "overlay": "rgba(0, 0, 0, 0.4)",
+      "poster_bg": "#FEF2F2"
+    },
+    "primary": {
+      "default": "#DC2626",
+      "hover": "#B91C1C",
+      "active": "#991B1B",
+      "subtle": "#FEE2E2",
+      "text": "#FFFFFF"
+    },
+    "secondary": {
+      "default": "#25D366",
+      "text": "#FFFFFF",
+      "description": "WhatsApp Green for sharing actions"
+    },
+    "text": {
+      "primary": "#0F172A",
+      "secondary": "#475569",
+      "tertiary": "#94A3B8",
+      "inverse": "#FFFFFF",
+      "error": "#EF4444"
+    },
+    "border": {
+      "default": "#E2E8F0",
+      "focus": "#DC2626",
+      "error": "#EF4444"
+    },
+    "status": {
+      "success": "#10B981",
+      "warning": "#F59E0B",
+      "error": "#EF4444",
+      "info": "#3B82F6"
+    }
+  },
+  "typography": {
+    "font_families": {
+      "heading": "Manrope",
+      "body": "Work Sans",
+      "mono": "JetBrains Mono"
+    },
+    "sizes": {
+      "h1": "text-3xl font-bold tracking-tight leading-tight",
+      "h2": "text-2xl font-bold tracking-tight leading-tight",
+      "h3": "text-xl font-semibold tracking-tight",
+      "h4": "text-lg font-semibold",
+      "body_lg": "text-base font-medium leading-relaxed",
+      "body_md": "text-sm font-normal leading-relaxed",
+      "body_sm": "text-xs font-medium uppercase tracking-wider"
+    }
+  },
+  "spacing": {
+    "screen_padding": "p-4 md:p-6",
+    "section_gap": "gap-6 md:gap-8",
+    "item_gap": "gap-3 md:gap-4",
+    "input_padding": "px-4 py-3",
+    "button_padding": "px-6 py-4"
+  },
+  "borders_and_shadows": {
+    "radius": {
+      "button": "rounded-xl",
+      "card": "rounded-2xl",
+      "input": "rounded-xl",
+      "badge": "rounded-full"
+    },
+    "shadows": {
+      "card": "shadow-sm",
+      "floating_action": "shadow-lg shadow-red-500/20",
+      "header": "shadow-sm border-b border-slate-100"
+    }
+  },
+  "components": {
+    "buttons": {
+      "primary": "bg-red-600 text-white rounded-xl py-4 px-6 font-semibold flex flex-row items-center justify-center active:bg-red-700 active:scale-95 transition-all",
+      "whatsapp": "bg-[#25D366] text-white rounded-xl py-4 px-6 font-semibold flex flex-row items-center justify-center active:bg-[#1EBE5A] active:scale-95 transition-all shadow-md",
+      "outline": "bg-transparent border-2 border-red-100 text-red-600 rounded-xl py-4 px-6 font-semibold flex flex-row items-center justify-center active:bg-red-50 transition-all",
+      "ghost": "bg-transparent text-slate-600 rounded-xl py-4 px-6 font-medium flex flex-row items-center justify-center active:bg-slate-100 transition-all"
+    },
+    "inputs": {
+      "default": "bg-white border border-slate-200 rounded-xl px-4 py-4 text-slate-900 font-medium text-base focus:border-red-500 focus:bg-white placeholder:text-slate-400",
+      "error": "bg-white border border-red-500 rounded-xl px-4 py-4 text-slate-900 focus:border-red-600"
+    },
+    "cards": {
+      "donor_card": "bg-white rounded-2xl p-4 border border-slate-100 shadow-sm flex flex-col gap-3",
+      "poster_preview": "bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-md",
+      "form_section": "bg-white rounded-2xl p-5 border border-slate-100 shadow-sm space-y-4"
+    },
+    "badges": {
+      "blood_group": "bg-red-100 text-red-700 px-3 py-1 rounded-full font-bold text-sm border border-red-200",
+      "status": "bg-slate-100 text-slate-700 px-3 py-1 rounded-full font-semibold text-xs uppercase tracking-wider"
+    }
+  },
+  "layout_patterns": {
+    "login_screen": "Flex-col, centered content, prominent app logo/icon, large input for phone number, highly visible 'Get OTP' button. Clean white background.",
+    "blood_request_form": "Scrollable form with sticky bottom CTA. Inputs grouped by category (Patient Info, Hospital Info, Attender Info). Use clear, large labels.",
+    "donor_search": "Sticky top filter bar (State, City, Blood Group). Scrollable list of donor cards. Floating Action Button (FAB) or sticky bottom bar for 'Send WhatsApp Request' when donors are selected.",
+    "poster_generation": "Auto-rendered View component containing patient details over a medical/red-tinted background image, captured via 'react-native-view-shot' and shared.",
+    "csv_upload": "Admin-only screen. Simple dashed dropzone (or file picker button) with clear instructions and a table preview of parsed data."
+  },
+  "motion_and_interaction": {
+    "screen_transitions": "Slide from right for deeper navigation, modal slide-up for filters and blood group selection.",
+    "button_press": "Scale down to 0.95 and slightly dim opacity (Native feedback).",
+    "toast_notifications": "Slide down from top, auto-dismiss after 3s, red for errors, green for success.",
+    "list_loading": "Shimmer effect (skeleton loader) on donor cards while fetching data."
+  },
+  "accessibility_and_testing": {
+    "contrast": "Ensure red accents on white backgrounds meet WCAG AA contrast ratios.",
+    "touch_targets": "Minimum 48x48 points for all interactive elements.",
+    "test_ids": "Apply 'data-testid' (or 'testID' in React Native) to all interactive elements. e.g., 'login-phone-input', 'submit-request-button', 'donor-card-checkbox'."
+  },
+  "icons": {
+    "library": "@expo/vector-icons (Feather, Ionicons, MaterialCommunityIcons)",
+    "usage": "Use Feather for clean minimal UI actions, MaterialCommunityIcons for specific blood drops, medical, whatsapp icons."
+  },
+  "media_assets": {
+    "backgrounds": [
+      {
+        "url": "https://images.unsplash.com/photo-1725857515127-eda91bda6035?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA4Mzl8MHwxfHNlYXJjaHwxfHxyZWQlMjBibG9vZCUyMGRyb3AlMjAzZHxlbnwwfHx8fDE3NzY2MjM3NDB8MA&ixlib=rb-4.1.0&q=85",
+        "category": "app_logo_concept",
+        "description": "3D Red Blood Drop - Useful as an inspiration for the app icon or hero graphic on login screen."
+      },
+      {
+        "url": "https://images.pexels.com/photos/6203473/pexels-photo-6203473.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "category": "poster_background",
+        "description": "ECG graph on a grid background - Perfect subtle medical background for the auto-generated WhatsApp poster."
+      },
+      {
+        "url": "https://images.pexels.com/photos/5149400/pexels-photo-5149400.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "category": "auth_header_image",
+        "description": "Artistic depiction of red blood cells - Good for login screen header illustration."
+      }
+    ]
+  },
+  "instructions_to_main_agent": [
+    "This is an Expo React Native application (SDK 54). Do not use React DOM specific components like 'div', 'span', or standard Shadcn UI web components.",
+    "Use NativeWind or StyleSheet for styling based on the Tailwind classes provided in these guidelines.",
+    "For the 'Auto-generated Blood Request Poster', construct a React Native <View> with a background image (from poster_background url) and text overlaid. Use a library like 'react-native-view-shot' to capture it as an image before sharing via WhatsApp.",
+    "Implement the 'Donor List' with checkboxes. A sticky footer should appear when at least 1 donor is selected, showing 'Selected: X (Min 5)'. The 'Send WhatsApp' button should only be enabled when selected >= 5.",
+    "Use standard Expo libraries: expo-image for images, expo-sharing/react-native-communications for WhatsApp intent, expo-document-picker for CSV upload.",
+    "For icons, use @expo/vector-icons.",
+    "Ensure all interactive elements have a 'testID' prop matching the data-testid convention (e.g. testID='login-button').",
+    "Use Safe-Area boundaries properly to prevent UI overlap with device notches."
+  ]
+}

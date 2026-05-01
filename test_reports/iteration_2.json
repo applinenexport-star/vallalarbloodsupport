@@ -1,0 +1,35 @@
+{
+  "summary": "BloodConnect iteration 2 full regression — 33/33 backend pytest PASSED and all critical UI flows verified. New JWT admin auth (super admin + regular admin invite/delete), Google Sheet sync (invalid URL 400, no-auth 401), Pending Registrations (list/export CSV/mark-synced), legacy admin endpoints now Bearer-only (PIN rejected), register->pending_registrations insert confirmed, /api/ otp_mode='twilio' live. Frontend admin screen now uses email+password (PIN removed), all 5 tabs render for super admin (Upload/Block/Complaints/Pending/Admins), Google Sheet URL field + Update Donors button present, Export/Mark-Synced on Pending tab, Invite-admin form on Admins tab, super_admin row has NO Remove button. Register screen shows all 18 blood-group chips (incl. A1+, A1B-, A2B+, Bombay Blood Group, INRA); tapping 'Non-Diabetic' selects silently; tapping 'Diabetic' opens Medical Advisory modal with the exact warning text, 'I Understand' sets diabetic=Diabetic and dismisses the modal.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [],
+    "react_native_issues": [
+      {"component": "various", "issue": "Cosmetic: 'props.pointerEvents is deprecated. Use style.pointerEvents' console warning repeats from prior iteration. Non-blocking."}
+    ]
+  },
+  "test_report_links": [
+    "/app/backend/tests/test_bloodconnect_api.py",
+    "/app/test_reports/pytest/pytest_results.xml"
+  ],
+  "action_items": [
+    "(Optional) Migrate shadow*/pointerEvents props to style-based equivalents to silence RN-web deprecation warnings.",
+    "(Note/FYI) /api/donors/filters blood_groups currently returns 17 BGs (missing 'INRA') because no donor in DB has INRA blood group. This is expected behaviour — the endpoint derives groups from actual data. The register screen still offers all 18 via frontend constant BLOOD_GROUPS."
+  ],
+  "critical_code_review_comments": [
+    "server.py is ~730 lines — consider splitting into routers/{auth,donors,admin,sheet}.py for maintainability.",
+    "Dead code: legacy /api/admin/login (PIN) + verify_admin(X-Admin-Pin) helper + ADMIN_PIN env are unused now. Safe to delete to avoid confusion.",
+    "/api/donors/sync-sheet ingests without deduping — repeated syncs create duplicate donor rows (e.g., current DB shows 470 donors after an earlier sync; a second sync would multiply). Consider upsert on phone_normalized, or clear non-owner rows before ingest.",
+    "register_donor does not upsert into pending_registrations — if a donor re-registers after admin unblock / deletion, a duplicate pending row may appear. Minor.",
+    "Hardcoded JWT_SECRET default 'dev-secret-change-me' is overridden by .env (good). Consider failing fast if env missing in prod.",
+    "CORS allow_origins=['*'] with allow_credentials=True is invalid per spec — browsers will ignore credentials. Switch to explicit origin list if cookies are ever used. (App currently uses AsyncStorage for JWT so not blocking.)"
+  ],
+  "updated_files": ["/app/backend/tests/test_bloodconnect_api.py"],
+  "success_rate": {"backend": "100% (33/33)", "frontend": "100% critical flows"},
+  "seed_data_creation": "Tests create and clean up: a temporary regular admin (test_admin_<hex>@example.com) invited and deleted within the same run; a pending donor registration with phone 99000NNNNN that is marked synced at end; a blocklist entry 9111111122 that is unblocked. A persistent 'sub@example.com / test1234' regular admin exists from prior dev-testing and is visible in the admin list UI — not created by this run.",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Test file: /app/backend/tests/test_bloodconnect_api.py (33 pytest tests, JWT-based). Credentials: super admin gogreenrevolutiontn@gmail.com / Star1981$$$; regular admin sub@example.com / test1234. Key testIDs — Admin: admin-email-input, admin-password-input, admin-login-btn, admin-logout-btn, admin-tab-{upload|block|complaints|pending|admins}, sheet-url-input, update-donors-btn, pick-csv-btn, upload-csv-btn, export-pending-btn, mark-synced-btn, invite-email-input, invite-password-input, invite-name-input, invite-admin-btn, admin-row-{email}. Register: reg-name, reg-phone, reg-email, reg-age, reg-bg-{BG} (18 options), reg-state, reg-city, reg-town, reg-diab-{Diabetic|Non-Diabetic}, diabetic-understand-btn, reg-submit-btn. Donor search UI uses local INDIA_STATES_CITIES for filters. JWT is stored in AsyncStorage as 'admin_jwt'. /api/donors/filters returns 17 BGs (INRA missing because no donor record has INRA). /api/ otp_mode='twilio' live.",
+  "rca_of_issue": "N/A — no bugs found in this iteration. All features listed in the review request verified working end-to-end."
+}

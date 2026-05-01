@@ -1,0 +1,56 @@
+// Curated list of Indian States/UTs and their major cities.
+// Keep only the top ~10-20 cities per state to keep bundle size reasonable.
+
+export const INDIA_STATES_CITIES: Record<string, string[]> = {
+  "Andhra Pradesh": ["Visakhapatnam", "Vijayawada", "Guntur", "Nellore", "Kurnool", "Rajahmundry", "Tirupati", "Kadapa", "Anantapur", "Kakinada", "Eluru", "Chittoor", "Vizianagaram", "Ongole"],
+  "Arunachal Pradesh": ["Itanagar", "Naharlagun", "Pasighat", "Tawang", "Ziro", "Bomdila", "Tezu", "Along", "Roing"],
+  "Assam": ["Guwahati", "Silchar", "Dibrugarh", "Jorhat", "Nagaon", "Tinsukia", "Tezpur", "Bongaigaon", "Dhubri", "Sivasagar", "Karimganj", "North Lakhimpur"],
+  "Bihar": ["Patna", "Gaya", "Bhagalpur", "Muzaffarpur", "Purnia", "Darbhanga", "Ara", "Begusarai", "Katihar", "Munger", "Chhapra", "Saharsa", "Siwan", "Motihari"],
+  "Chhattisgarh": ["Raipur", "Bhilai", "Bilaspur", "Korba", "Durg", "Rajnandgaon", "Jagdalpur", "Raigarh", "Ambikapur", "Dhamtari"],
+  "Goa": ["Panaji", "Margao", "Vasco da Gama", "Mapusa", "Ponda", "Bicholim", "Curchorem", "Sanquelim"],
+  "Gujarat": ["Ahmedabad", "Surat", "Vadodara", "Rajkot", "Bhavnagar", "Jamnagar", "Gandhinagar", "Junagadh", "Anand", "Bharuch", "Mehsana", "Morbi", "Nadiad", "Navsari", "Porbandar", "Vapi"],
+  "Haryana": ["Gurugram", "Faridabad", "Panipat", "Ambala", "Yamunanagar", "Rohtak", "Hisar", "Karnal", "Sonipat", "Panchkula", "Bhiwani", "Sirsa", "Bahadurgarh", "Jind"],
+  "Himachal Pradesh": ["Shimla", "Manali", "Dharamshala", "Solan", "Mandi", "Kullu", "Bilaspur", "Hamirpur", "Una", "Chamba", "Kangra", "Palampur"],
+  "Jharkhand": ["Ranchi", "Jamshedpur", "Dhanbad", "Bokaro", "Hazaribagh", "Deoghar", "Giridih", "Phusro", "Ramgarh", "Medininagar", "Chaibasa", "Dumka"],
+  "Karnataka": ["Bengaluru", "Mysuru", "Mangaluru", "Hubli", "Belagavi", "Davangere", "Ballari", "Tumakuru", "Shivamogga", "Bijapur", "Raichur", "Udupi", "Hassan", "Chikmagalur", "Gulbarga", "Dharwad"],
+  "Kerala": ["Thiruvananthapuram", "Kochi", "Kozhikode", "Thrissur", "Kollam", "Palakkad", "Kannur", "Alappuzha", "Malappuram", "Kottayam", "Pathanamthitta", "Idukki", "Kasaragod", "Wayanad", "Ernakulam"],
+  "Madhya Pradesh": ["Bhopal", "Indore", "Jabalpur", "Gwalior", "Ujjain", "Sagar", "Dewas", "Satna", "Ratlam", "Rewa", "Katni", "Singrauli", "Burhanpur", "Khandwa", "Chhindwara"],
+  "Maharashtra": ["Mumbai", "Pune", "Nagpur", "Nashik", "Thane", "Aurangabad", "Solapur", "Amravati", "Kolhapur", "Navi Mumbai", "Sangli", "Jalgaon", "Akola", "Latur", "Dhule", "Ahmednagar", "Chandrapur", "Parbhani", "Nanded"],
+  "Manipur": ["Imphal", "Thoubal", "Bishnupur", "Churachandpur", "Kakching", "Ukhrul", "Senapati", "Tamenglong"],
+  "Meghalaya": ["Shillong", "Tura", "Jowai", "Nongstoin", "Baghmara", "Williamnagar", "Nongpoh"],
+  "Mizoram": ["Aizawl", "Lunglei", "Serchhip", "Champhai", "Kolasib", "Saiha", "Mamit", "Lawngtlai"],
+  "Nagaland": ["Kohima", "Dimapur", "Mokokchung", "Tuensang", "Wokha", "Mon", "Zunheboto", "Phek"],
+  "Odisha": ["Bhubaneswar", "Cuttack", "Rourkela", "Berhampur", "Sambalpur", "Puri", "Balasore", "Baripada", "Bhadrak", "Jeypore", "Angul", "Dhenkanal"],
+  "Punjab": ["Ludhiana", "Amritsar", "Jalandhar", "Patiala", "Bathinda", "Mohali", "Pathankot", "Hoshiarpur", "Moga", "Firozpur", "Abohar", "Khanna", "Phagwara", "Muktsar"],
+  "Rajasthan": ["Jaipur", "Jodhpur", "Udaipur", "Kota", "Ajmer", "Bikaner", "Alwar", "Bhilwara", "Sikar", "Pali", "Ganganagar", "Tonk", "Sawai Madhopur", "Bharatpur", "Jhunjhunu"],
+  "Sikkim": ["Gangtok", "Namchi", "Gyalshing", "Mangan", "Jorethang", "Rangpo", "Singtam"],
+  "Tamil Nadu": ["Chennai", "Coimbatore", "Madurai", "Tiruchirappalli", "Salem", "Tirunelveli", "Tiruppur", "Erode", "Vellore", "Thoothukudi", "Dindigul", "Thanjavur", "Hosur", "Nagercoil", "Kanchipuram", "Karur", "Cuddalore", "Kumbakonam", "Tirupur", "Namakkal", "Karaikudi", "Sivakasi", "Dharmapuri", "Pudukkottai"],
+  "Telangana": ["Hyderabad", "Warangal", "Nizamabad", "Karimnagar", "Khammam", "Ramagundam", "Mahbubnagar", "Nalgonda", "Adilabad", "Suryapet", "Siddipet", "Miryalaguda"],
+  "Tripura": ["Agartala", "Udaipur", "Dharmanagar", "Kailashahar", "Belonia", "Khowai", "Ambassa", "Teliamura"],
+  "Uttar Pradesh": ["Lucknow", "Kanpur", "Varanasi", "Agra", "Meerut", "Prayagraj", "Ghaziabad", "Noida", "Aligarh", "Moradabad", "Bareilly", "Gorakhpur", "Saharanpur", "Firozabad", "Jhansi", "Muzaffarnagar", "Mathura", "Ayodhya", "Rampur", "Shahjahanpur", "Farrukhabad", "Mau", "Hapur", "Etawah", "Mirzapur"],
+  "Uttarakhand": ["Dehradun", "Haridwar", "Roorkee", "Haldwani", "Rudrapur", "Kashipur", "Rishikesh", "Nainital", "Mussoorie", "Pithoragarh", "Almora"],
+  "West Bengal": ["Kolkata", "Howrah", "Durgapur", "Asansol", "Siliguri", "Bardhaman", "Malda", "Kharagpur", "Haldia", "Baharampur", "Krishnanagar", "Raiganj", "Jalpaiguri", "Darjeeling"],
+  "Andaman and Nicobar Islands": ["Port Blair", "Diglipur", "Mayabunder", "Rangat", "Hut Bay"],
+  "Chandigarh": ["Chandigarh"],
+  "Dadra and Nagar Haveli and Daman and Diu": ["Silvassa", "Daman", "Diu"],
+  "Delhi": ["New Delhi", "North Delhi", "South Delhi", "East Delhi", "West Delhi", "Central Delhi", "Dwarka", "Rohini", "Pitampura", "Saket", "Karol Bagh", "Connaught Place"],
+  "Jammu and Kashmir": ["Srinagar", "Jammu", "Anantnag", "Baramulla", "Sopore", "Kathua", "Udhampur", "Pulwama", "Kupwara"],
+  "Ladakh": ["Leh", "Kargil", "Nubra", "Zanskar", "Drass"],
+  "Lakshadweep": ["Kavaratti", "Agatti", "Andrott", "Minicoy", "Amini"],
+  "Puducherry": ["Puducherry", "Karaikal", "Yanam", "Mahe"],
+};
+
+export const INDIAN_STATES: string[] = Object.keys(INDIA_STATES_CITIES).sort();
+
+export const BLOOD_GROUPS: string[] = [
+  "A+", "A-",
+  "A1+", "A1-",
+  "A1B+", "A1B-",
+  "A2+", "A2-",
+  "A2B+", "A2B-",
+  "AB+", "AB-",
+  "B+", "B-",
+  "Bombay Blood Group",
+  "INRA",
+  "O+", "O-",
+];
